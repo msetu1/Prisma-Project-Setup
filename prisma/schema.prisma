@@ -25,6 +25,7 @@ model User {
   id       Int      @id @default(autoincrement())
   username String   @unique
   email    String
+  age Int @default(0)
   role     UserRole @default(user)
   profile  Profile? // One-to-One relation
   post     Post[] // One-to-Many relation
@@ -36,7 +37,7 @@ model Profile {
   id     Int     @id @default(autoincrement())
   bio    String?
   userId Int     @unique
-  use    User    @relation(fields: [userId], references: [id])
+  user    User    @relation(fields: [userId], references: [id])
 
   @@map("profiles")
 }
